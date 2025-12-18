@@ -25,5 +25,19 @@ class DefaultContainerApp : ContainerApp {
         .addInterceptor(logging)
         .build()
 
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(baseurl)
+        .addConverterFactory(
+            Json {
+                ignoreUnknownKeys = true
+                prettyPrint = true
+                isLenient = true
+            }.asConverterFactory("application/json".toMediaType())
+        )
 
+    private val retrofitService: RepositoryDataSiswa by lazy {
+        retrofit.create(ServiceApiSiswa::class.java)
+    }
+
+    
 }

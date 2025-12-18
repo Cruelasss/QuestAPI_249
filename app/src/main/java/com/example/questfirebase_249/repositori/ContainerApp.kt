@@ -1,6 +1,5 @@
 package com.example.questfirebase_249.repositori
 
-
 import android.app.Application
 import com.example.questfirebase_249.apiservice.ServiceApiSiswa
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -15,7 +14,7 @@ interface ContainerApp {
 }
 
 class DefaultContainerApp : ContainerApp {
-    private val baseurl = "http:10.0.2.2/umyTI/"
+    private val baseurl = "http://10.0.2.2/umyTI/"
 
     val logging = HttpLoggingInterceptor().apply{
         level = HttpLoggingInterceptor.Level.BODY
@@ -33,9 +32,9 @@ class DefaultContainerApp : ContainerApp {
                 prettyPrint = true
                 isLenient = true
             }.asConverterFactory("application/json".toMediaType())
-        )
+        ).build()
 
-    private val retrofitService: RepositoryDataSiswa by lazy {
+    private val retrofitService: ServiceApiSiswa by lazy {
         retrofit.create(ServiceApiSiswa::class.java)
     }
 

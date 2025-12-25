@@ -75,7 +75,7 @@ fun HomeScreen(
                     contentDescription = stringResource(R.string.entry_siswa)
                 )
             }
-        }
+        },
     ) { innerPadding ->
         HomeBody(
             statusUiSiswa = viewModel.listSiswa,

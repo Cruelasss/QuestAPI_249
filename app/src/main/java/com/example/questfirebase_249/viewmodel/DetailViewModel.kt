@@ -29,7 +29,10 @@ class DetailViewModel(
     private val repositoryDataSiswa: RepositoryDataSiswa
 ) : ViewModel() {
 
-    private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
+    // Ambil sebagai String dulu, lalu ubah ke Int
+    private val _idSiswa: String = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
+    private val idSiswa: Int = _idSiswa.toInt()
+
     var statusUIDetail: StatusUIDetail by mutableStateOf(StatusUIDetail.Loading)
         private set
 
@@ -41,7 +44,9 @@ class DetailViewModel(
         viewModelScope.launch {
             statusUIDetail = StatusUIDetail.Loading
             statusUIDetail = try {
-                StatusUIDetail.Success(satusiswa = repositoryDataSiswa.getSatuSiswa(idSiswa))
+                StatusUIDetail.Success(
+                    satusiswa = repositoryDataSiswa.getSatuSiswa(idSiswa)
+                )
             } catch (e: IOException) {
                 StatusUIDetail.Error
             } catch (e: HttpException) {
@@ -52,7 +57,8 @@ class DetailViewModel(
 
     @SuppressLint("SuspiciousIndentation")
     suspend fun hapusSatuSiswa() {
-        val resp: Response<Void> = repositoryDataSiswa.hapusSatuSiswa(idSiswa)
+        val resp: Response<Void> =
+            repositoryDataSiswa.hapusSatuSiswa(idSiswa)
 
         if (resp.isSuccessful) {
             println("Sukses Hapus Data : ${resp.message()}")

@@ -35,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.QuestFirebase_249.R
 import com.example.questfirebase_249.modeldata.DataSiswa
+import com.example.questfirebase_249.uicontroller.route.DestinasiDetail
 import com.example.questfirebase_249.viewmodel.DetailViewModel
 import com.example.questfirebase_249.viewmodel.StatusUIDetail
 import com.example.questfirebase_249.viewmodel.provider.PenyediaViewModel

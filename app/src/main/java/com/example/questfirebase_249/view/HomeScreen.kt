@@ -65,6 +65,7 @@ fun HomeScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
+                //edit 1.2 : event onClick
                 onClick = navigateToItemEntry,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(16.dp)

@@ -1,4 +1,4 @@
-package com.example.questfirebase_249.uicontroller
+package com.example.questfirebase_249.uicontroller.route
 
 interface DestinasiNavigasi {
     val route: String

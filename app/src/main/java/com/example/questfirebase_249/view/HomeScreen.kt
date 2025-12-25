@@ -38,6 +38,7 @@ import com.example.questfirebase_249.viewmodel.provider.PenyediaViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    //edit 1.1 : tambahkan parameter navigateToItemEntry
     navigateToItemEntry: () -> Unit,
     navigateToItemUpdate: (String) -> Unit,
     modifier: Modifier = Modifier,

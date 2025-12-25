@@ -49,11 +49,20 @@ fun HostNavigasi(
                 navController.popBackStack(DestinasiHome.route, false)
             })
         }
-        composable(DestinasiDetail.routeWithArgs, arguments = listOf(navArgument(DestinasiDetail.itemIdArg) {
-            type = NavType.IntType })
-        ){
-            DetailSiswaScreen(navigateToEditItem = {navController.navigate("${DestinasiEdit.route}/$it")},
-                navigateBack = { navController.navigate(DestinasiHome.route) })
+
+        composable(
+            route = DestinasiDetail.routeWithArgs,
+            arguments = listOf(navArgument(DestinasiDetail.itemIdArg) {
+                // Sesuaikan tipe data NIM. Jika di Firebase/DB adalah String, gunakan StringType
+                type = NavType.StringType
+            })
+        ) {
+            DetailSiswaScreen(
+                navigateToEditItem = { nim ->
+                    navController.navigate("${DestinasiEdit.route}/$nim")
+                },
+                navigateBack = { navController.navigateUp() }
+            )
         }
         composable(DestinasiEdit.routeWithArgs, arguments = listOf(navArgument(DestinasiEdit.itemIdArg)
         ){

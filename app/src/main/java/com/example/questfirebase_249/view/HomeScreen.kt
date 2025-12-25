@@ -48,7 +48,8 @@ import com.example.questfirebase_249.viewmodel.provider.PenyediaViewModel
 fun HomeScreen(
     //edit 1.1 : tambahkan parameter navigateToItemEntry
     navigateToItemEntry: () -> Unit,
-    navigateToItemUpdate: (String) -> Unit,
+    //edit 2.4 : tambahkan parameter navigateToItemUpdate
+    navigateToItemUpdate: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {

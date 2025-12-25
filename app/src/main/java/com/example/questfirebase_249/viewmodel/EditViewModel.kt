@@ -19,7 +19,10 @@ class EditViewModel(savedStateHandle: SavedStateHandle, private val repositoryDa
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
 
-    private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
+    // PERBAIKAN DI SINI:
+    // Ambil nilai dari savedStateHandle sebagai String, lalu konversi ke Int
+    private val _idSiswa: String = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
+    private val idSiswa: Int = _idSiswa.toInt()
 
     init {
         viewModelScope.launch {

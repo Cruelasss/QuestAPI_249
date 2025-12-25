@@ -30,3 +30,9 @@ fun EditSiswaScreen(
             )
         },
         modifier = modifier
+    ) { innerPadding ->
+        val coroutineScope = rememberCoroutineScope()
+        EntrySiswaBody(
+            uiStateSiswa = viewModel.uiStateSiswa,
+            onSiswaValueChange = viewModel::updateUiState,
+            onSaveClick = {

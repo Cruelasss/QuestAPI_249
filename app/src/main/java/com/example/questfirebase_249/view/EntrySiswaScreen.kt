@@ -124,3 +124,6 @@ fun FormTambahSiswa(
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
+        )
+        OutlinedTextField(
+            value = detailSiswa.telpon,

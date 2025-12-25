@@ -79,105 +79,11 @@ fun HomeScreen(
     ) { innerPadding ->
         HomeBody(
             statusUiSiswa = viewModel.listSiswa,
-            onSiswaClick = navigateToItemUpdate as (Int) -> Unit,
-            retryAction = { viewModel.loadSiswa() },
-            modifier = Modifier.padding(innerPadding)
+            onSiswaClick = navigateToItemUpdate,
+            retryAction = viewModel::loadSiswa,
+            modifier = modifier
+                .padding(innerPadding)
+                .fillMaxSize()
         )
-    }
-}
-
-@Composable
-fun HomeBody(
-    statusUiSiswa: StatusUiSiswa,
-    onSiswaClick: (Int) -> Unit,
-    retryAction: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.fillMaxSize()
-    ) {
-        when (statusUiSiswa) {
-            is StatusUiSiswa.Loading -> LoadingScreen()
-            is StatusUiSiswa.Success -> {
-                if (statusUiSiswa.siswa.isEmpty()) {
-                    Text(text = "Tidak ada data siswa")
-                } else {
-                    DaftarSiswa(
-                        itemSiswa = statusUiSiswa.siswa,
-                        // FIX: Argument type mismatch diatasi dengan memastikan it.id adalah String
-                        onSiswaClick = { onSiswaClick(it.id) }
-                    )
-                }
-            }
-            is StatusUiSiswa.Error -> ErrorScreen(
-                retryAction = retryAction,
-                modifier = Modifier.fillMaxSize()
-            )
-        }
-    }
-}
-
-@Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
-    Column(modifier = modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-        Text("Loading...")
-    }
-}
-
-@Composable
-fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
-    Column(modifier = modifier, verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "Gagal memuat data")
-        Button(onClick = retryAction) { Text("Coba Lagi") }
-    }
-}
-
-@Composable
-fun DaftarSiswa(
-    itemSiswa: List<DataSiswa>,
-    onSiswaClick: (DataSiswa) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    LazyColumn(
-        modifier = modifier,
-        contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(itemSiswa) { siswa ->
-            ItemSiswa(
-                siswa = siswa,
-                modifier = Modifier.clickable { onSiswaClick(siswa) }
-            )
-        }
-    }
-}
-
-@Composable
-fun ItemSiswa(
-    siswa: DataSiswa,
-    modifier: Modifier = Modifier
-) {
-    Card(
-        modifier = modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Text(
-                text = siswa.nama,
-                style = MaterialTheme.typography.titleLarge
-            )
-            Text(
-                text = siswa.telpon,
-                style = MaterialTheme.typography.titleMedium
-            )
-            Text(
-                text = siswa.alamat,
-                style = MaterialTheme.typography.titleMedium
-            )
-        }
     }
 }

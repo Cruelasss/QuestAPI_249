@@ -36,9 +36,10 @@ fun HostNavigasi(
         modifier = modifier // Gunakan parameter modifier yang dilewatkan
     ) {
         composable(DestinasiHome.route) {
-            HomeScreen(navigateToItemEntry = { navController.navigate(DestinasiEntry.route) },
-                onItemClick = {
-                    navController.navigate("${DestinasiDetail.route}/$it")
+            HomeScreen(
+                navigateToItemEntry = { navController.navigate(DestinasiEntry.route) },
+                navigateToItemUpdate = { nim -> // Beri nama parameter yang jelas, misal: nim
+                    navController.navigate("${DestinasiDetail.route}/$nim")
                 }
             )
         }

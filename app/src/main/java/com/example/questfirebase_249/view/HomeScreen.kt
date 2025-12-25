@@ -68,7 +68,7 @@ fun HomeScreen(
                 //edit 1.2 : event onClick
                 onClick = navigateToItemEntry,
                 shape = MaterialTheme.shapes.medium,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
             ) {
                 Icon(
                     // FIX: Unresolved reference 'Icons' diatasi dengan import material-icons-filled

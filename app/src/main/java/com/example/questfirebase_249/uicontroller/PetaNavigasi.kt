@@ -18,8 +18,11 @@ import com.example.questfirebase_249.view.EntrySiswaScreen
 import com.example.questfirebase_249.view.HomeScreen
 
 @Composable
-fun DataSiswaApp(navController: NavHostController = rememberNavController(), modifier: Modifier){
-    HostNavigasi(navController = navController)
+fun DataSiswaApp(
+    navController: NavHostController = rememberNavController(),
+    modifier: Modifier = Modifier // Tambahkan default value agar tidak error saat dipanggil
+) {
+    HostNavigasi(navController = navController, modifier = modifier)
 }
 
 @Composable
